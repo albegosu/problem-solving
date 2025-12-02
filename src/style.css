@@ -15,6 +15,9 @@
   --color-border: #4a5a64;
   --color-background: #36464f;
   --color-background-alt: #2d3a42;
+  
+  /* Hero background image */
+  --hero-bg-image: url('./assets/hero-illustration.jpg');
 
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
   line-height: 1.5;
@@ -25,7 +28,7 @@
   background-color: var(--color-background);
 
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizeLegacy;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
@@ -49,8 +52,10 @@ html {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
   line-height: 1.2;
+  letter-spacing: 0.02em;
 }
 
 p {

@@ -1,6 +1,12 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 
+// Import images (uncomment when you add them to assets folder)
+// Hero image is now loaded via CSS variable in style.css
+import methodologyImage from './assets/methodology.png'
+import einsteinImage from './assets/einstein.png'
+// import munariImage from './assets/munari-method.svg'
+
 const isVisible = ref(false)
 const showBackToTop = ref(false)
 
@@ -45,10 +51,11 @@ const scrollToNextSection = (currentSection) => {
     <!-- Hero Section -->
     <section class="hero" :class="{ 'fade-in': isVisible }">
       <div class="container">
-        <h1 class="hero-title">¿resolución de problemas?</h1>
-        <p class="hero-subtitle">metodología para la supervivencia</p>
+        <!-- Hero image is now a background with color overlay -->
+        <h1 class="hero-title">¿Tienes problemas?</h1>
+        <p class="hero-subtitle">Metodología para la supervivencia</p>
         <button class="cta-button" @click="scrollToSection('intro')">
-          Explorar metodología
+          ¿Comenzamos?
         </button>
       </div>
       <div class="scroll-indicator">
@@ -61,23 +68,27 @@ const scrollToNextSection = (currentSection) => {
       <div class="container">
         <h2 class="section-title">¿Cómo enfrentamos los problemas?</h2>
         <div class="problem-flow">
-          <div class="flow-item">
-            <span class="flow-emoji">🤐</span>
-            <p>Tengo un problema → no lo digo → se enquista</p>
-            <small>(Miedo, indecisión, parálisis analítica, cultura del silencio)</small>
-          </div>
-          <div class="flow-separator">o</div>
-          <div class="flow-item">
-            <span class="flow-emoji">💬</span>
-            <p>Lo digo → pero solo verbalizo el problema, no inicio la resolución</p>
-          </div>
+            <div class="flow-item">
+              <span class="flow-emoji">🤐</span>
+              <p class="flow-item-text">
+                Tengo un problema <br>
+                <span class="arrow">↓</span> <br>
+                No lo digo <br>
+                <span class="arrow">↓</span> <br>
+                Se enquista</p>
+              <small>(Miedo, indecisión, cultura del silencio)</small>
+            </div>
+            <div class="flow-item">
+              <span class="flow-emoji">💬</span>
+              <p class="flow-item-text">
+                Lo digo <br>
+                <span class="arrow">↓</span> <br>
+                Solo lo verbalizo, no inicio la resolución</p>
+                <small>(Queja, ruido, no ahondar en el problema)</small>
+            </div>
         </div>
         <div class="highlight-box">
-          <h3>Lo que falta es método</h3>
-          <p>Es necesario transformar lo difuso en proceso para poder enfocarnos en llegar a la solución</p>
-          <div class="question">
             ¿Qué es más frecuente en el equipo: no decir el problema o decirlo sin avanzar?
-          </div>
         </div>
         <button class="next-section-btn" @click="scrollToNextSection('intro')" aria-label="Siguiente sección">
           ↓
@@ -87,19 +98,26 @@ const scrollToNextSection = (currentSection) => {
 
     <!-- Methodology Section -->
     <section id="methodology" class="section methodology-section">
+      <!-- Methodology image positioned at left -->
+      <div class="section-image-left">
+        <img :src="methodologyImage" alt="Design methodology" />
+      </div>
+      
       <div class="container">
-        <h2 class="section-title">Enfoque → Metodología de diseño</h2>
+        <h2 class="section-title">Enfocados en: <br>
+          <span class="section-title-small"> Metodología de diseño</span></h2>
+        
         <div class="methodology-grid">
           <div class="methodology-card">
-            <h3>Diseñar objetos decorativos</h3>
-            <span class="arrow">→</span>
-            <h3>Diseñar objetos para problemas reales</h3>
+            <h3>'¿Cómo nacen los objetos?'</h3>
+            <span class="arrow">↓</span>
+            <h3>Bruno Munari</h3>
           </div>
           <div class="methodology-card">
             <h4>Metodología proyectual</h4>
             <p>Proceso estructurado</p>
           </div>
-          <div class="methodology-card highlighted">
+          <div class="methodology-card">
             <h4>Design Thinking</h4>
             <p>Entender el problema, generar alternativas y testear soluciones</p>
           </div>
@@ -112,15 +130,22 @@ const scrollToNextSection = (currentSection) => {
 
     <!-- Creativity Section -->
     <section id="creativity" class="section creativity-section">
+      <!-- Einstein image positioned at right -->
+      <div class="section-image-right">
+        <img :src="einsteinImage" alt="Einstein" />
+      </div>
+      
       <div class="container">
         <h2 class="section-title">Idea romántica de la creatividad</h2>
         <blockquote class="quote">
           "Cuando hablamos de resolver problemas, solemos pensar en intuición, experiencia o improvisación. 
-          Pero Bruno Munari nos recuerda que cualquier proceso —desde diseñar un objeto hasta desarrollar software— 
-          mejora cuando abandonamos la idea romántica del 'genio' y adoptamos un método claro..."
+          Pero Bruno Munari nos recuerda que 
+          <span class="quote-stroke">cualquier proceso
+          <span class="quote-stroke-span">—desde diseñar un objeto hasta desarrollar software— </span>
+          mejora cuando abandonamos la idea romántica del 'genio' y adoptamos un método claro..."</span> 
         </blockquote>
         <div class="question-box">
-          <p class="italic">¿Creatividad es solo arte?</p>
+          <p class="italic">¿La creatividad es solo para el arte?</p>
         </div>
         <button class="next-section-btn" @click="scrollToNextSection('creativity')" aria-label="Siguiente sección">
           ↓
@@ -132,17 +157,23 @@ const scrollToNextSection = (currentSection) => {
     <section id="munari" class="section munari-section">
       <div class="container">
         <h2 class="section-title">Munari aplicado al software</h2>
+        
+        <!-- Uncomment when you add munari image to assets -->
+        <!-- <div class="section-image">
+          <img :src="munariImage" alt="Munari method" />
+        </div> -->
+        
         <div class="principles">
           <div class="principle-item">
-            <span class="bullet">•</span>
             <div>
-              <strong>Desromantizar la creatividad:</strong> No esperamos genios. Esperamos procesos reproducibles.
+              <strong>Desmitificar la creatividad</strong> <br>
+              No se buscan genios. Se esperan alcanzar procesos reproducibles
             </div>
           </div>
           <div class="principle-item">
-            <span class="bullet">•</span>
             <div>
-              <strong>El diseño es una forma ordenada de resolver problemas:</strong> Igual que escribir un feature, refactorizar, o corregir un bug.
+              <strong>El diseño es una forma ordenada de resolver problemas</strong> <br>
+              Igual que escribir un feature, refactorizar, o corregir un bug
             </div>
           </div>
         </div>
@@ -170,34 +201,44 @@ const scrollToNextSection = (currentSection) => {
       <div class="container">
         <h2 class="section-title">"De problema a método"</h2>
         
-        <div class="examples-box">
-          <h3>Ejemplos:</h3>
-          <ul class="examples-list">
-            <li>"No entiendo bien los criterios de aceptación de mi tarea."</li>
-            <li>"Hay fricción entre dos equipos."</li>
-            <li>"No tengo claridad en prioridades."</li>
-          </ul>
+        <div class="method-flow">
+          <div class="method-step">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Ejemplos</h3>
+            <ul class="step-list">
+              <li>"No entiendo bien los criterios de aceptación de mi tarea."</li>
+              <li>"Hay fricción entre dos equipos."</li>
+              <li>"No tengo claridad en prioridades."</li>
+            </ul>
+          </div>
+
+          <div class="flow-arrow">↓</div>
+
+          <div class="method-step">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Redefinir</h3>
+            <ul class="step-list">
+              <li>¿Cuál es realmente el problema?</li>
+              <li>¿Qué condiciones lo rodean?</li>
+              <li>¿Qué parte es ambigua?</li>
+              <li>¿Qué sería una definición clara, concreta, neutral del problema?</li>
+            </ul>
+          </div>
+
+          <div class="flow-arrow">↓</div>
+
+          <div class="method-step">
+            <div class="step-number">3</div>
+            <h3 class="step-title">Generar caminos</h3>
+            <ul class="step-list">
+              <li>No soluciones completas</li>
+              <li>Solo alternativas</li>
+              <li>Opciones que derivan en opciones</li>
+            </ul>
+            <p class="step-note">Munari insistía en que la creatividad surge cuando existe variedad, no cuando buscamos la "respuesta perfecta" a la primera.</p>
+          </div>
         </div>
 
-        <div class="redefine-box">
-          <h3>Redefinir los problemas:</h3>
-          <ul class="redefine-list">
-            <li>¿Cuál es realmente el problema?</li>
-            <li>¿Qué condiciones lo rodean?</li>
-            <li>¿Qué parte es ambigua?</li>
-            <li>¿Qué sería una definición clara, concreta, neutral del problema?</li>
-          </ul>
-        </div>
-
-        <div class="generate-box">
-          <h3>Generar caminos posibles:</h3>
-          <ul class="generate-list">
-            <li><em>No soluciones completas.</em></li>
-            <li><em>Solo alternativas.</em></li>
-            <li><em>Opciones que derivan en opciones.</em></li>
-          </ul>
-          <p class="note">Munari insistía en que la creatividad surge cuando existe variedad, no cuando buscamos la "respuesta perfecta" a la primera.</p>
-        </div>
         <button class="next-section-btn" @click="scrollToNextSection('problem-method')" aria-label="Siguiente sección">
           ↓
         </button>
@@ -234,8 +275,8 @@ const scrollToNextSection = (currentSection) => {
       <div class="container">
         <p>Metodología para la resolución de problemas</p>
         <p class="instagram-link">
-          <a href="https://www.instagram.com/reel/DQnyCTXDgXG/?igsh=Z3NwdWZ2cm92azhq" target="_blank" rel="noopener noreferrer">
-            Ver más en Instagram →
+          <a href="https://dash.resiz.es/" target="_blank" rel="noopener noreferrer">
+            Ver más en mi plan PRO 'Sobreviviendo a Resizes' →
           </a>
         </p>
       </div>
@@ -276,22 +317,67 @@ const scrollToNextSection = (currentSection) => {
   transition: all 1s ease-out;
 }
 
+/* Hero background image with color overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--hero-bg-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.15;
+  z-index: 0;
+  filter: grayscale(100%);
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  align-items: center;
+}
+
+.hero-image {
+  display: none;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
 .hero.fade-in {
   opacity: 1;
   transform: translateY(0);
 }
 
 .hero-title {
+  font-family: 'Oswald', sans-serif;
   font-size: 4rem;
-  font-weight: 300;
+  font-weight: 400;
   margin: 0;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.1;
   margin-bottom: 1rem;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .hero-subtitle {
+  font-style: italic;
   font-size: 1.5rem;
   font-weight: 300;
   margin: 0;
@@ -311,6 +397,8 @@ const scrollToNextSection = (currentSection) => {
   cursor: pointer;
   transition: all 0.3s ease;
   letter-spacing: 0.05em;
+  align-self: center;
+  width: auto;
 }
 
 .cta-button:hover {
@@ -343,9 +431,12 @@ const scrollToNextSection = (currentSection) => {
 /* Common Section Styles */
 .section {
   padding: 5rem 2rem;
-  min-height: 70vh;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .section:nth-child(even) {
@@ -362,39 +453,120 @@ const scrollToNextSection = (currentSection) => {
   width: 100%;
   padding: 0 1rem;
   text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Section Images */
+.section-image {
+  max-width: 600px;
+  margin: 0 auto 3rem;
+  padding: 2rem;
+  background: var(--color-background-alt);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+}
+
+.section-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  filter: grayscale(100%);
+  opacity: 0.9;
+}
+
+/* Section Images - Left Aligned (No Box) */
+.section-image-left {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 500px;
+  width: 35vw;
+  padding: 0;
+  margin: 0;
+  z-index: 0;
+}
+
+.section-image-left img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(100%);
+  opacity: 0.4;
+}
+
+/* Section Images - Right Aligned (No Box) */
+.section-image-right {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: auto;
+  padding: 0;
+  margin: 0;
+  z-index: 0;
+}
+
+.section-image-right img {
+  height: 100%;
+  width: auto;
+  display: block;
+  filter: grayscale(100%);
+  opacity: 0.3;
+  object-fit: cover;
 }
 
 .section-title {
+  font-family: 'Oswald', sans-serif;
+  font-style: normal;
   font-size: 2.5rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 3rem;
   text-align: center;
   color: var(--color-text-primary);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.03em;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
 }
 
 /* Introduction Section */
 .problem-flow {
   display: flex;
-  flex-direction: column;
   gap: 1.5rem;
   margin-bottom: 3rem;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+  align-items: stretch;
 }
 
 .flow-item {
   background: var(--color-background-alt);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   padding: 2rem;
   border-radius: 12px;
   border: 1px solid var(--color-border);
   transition: all 0.3s ease;
   text-align: left;
+  flex: 1;
+  min-width: 0;
+  min-height: 300px;
 }
 
 .flow-item:hover {
   border-color: var(--color-text);
+}
+
+.flow-item-text {
+  text-align: center;
 }
 
 .flow-emoji {
@@ -415,6 +587,20 @@ const scrollToNextSection = (currentSection) => {
   color: var(--color-text-muted);
   font-style: italic;
   font-size: 0.9rem;
+  margin-top: auto;
+  display: block;
+  padding-top: 1rem;
+}
+
+.quote-stroke {
+  color: var(--color-text);
+  font-weight: 600;
+  font-style: bold;
+}
+
+.quote-stroke-span {
+  color: var(--color-text);
+  font-weight: 100;
 }
 
 .flow-separator {
@@ -424,13 +610,19 @@ const scrollToNextSection = (currentSection) => {
   color: var(--color-text-muted);
 }
 
+.section-title-small {
+  color: var(--color-text);
+  font-weight: 300;
+  text-transform: none;
+}
+
 .highlight-box {
   background: var(--color-background-alt);
   color: var(--color-text-primary);
   padding: 3rem;
   border-radius: 12px;
   text-align: center;
-  max-width: 900px;
+  max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid var(--color-border);
@@ -461,17 +653,31 @@ const scrollToNextSection = (currentSection) => {
 }
 
 /* Methodology Section */
+.methodology-section {
+  position: relative;
+}
+
+.methodology-section .container {
+  position: relative;
+}
+
 .methodology-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   max-width: 1000px;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 .methodology-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background: var(--color-background-alt);
-  padding: 2.5rem;
+  padding: 2rem;
   border-radius: 12px;
   border: 1px solid var(--color-border);
   text-align: center;
@@ -517,8 +723,6 @@ const scrollToNextSection = (currentSection) => {
 
 .arrow {
   font-size: 1.5rem;
-  display: block;
-  margin: 1rem 0;
   color: var(--color-text);
   font-weight: 300;
 }
@@ -529,8 +733,15 @@ const scrollToNextSection = (currentSection) => {
   color: var(--color-text-primary);
 }
 
+.creativity-section .container {
+  padding-top: 5rem;
+  max-width: 700px;
+}
+
 .creativity-section .section-title {
   color: var(--color-text-primary);
+  text-align: right;
+  max-width: 100%;
 }
 
 .quote {
@@ -538,22 +749,27 @@ const scrollToNextSection = (currentSection) => {
   line-height: 1.8;
   font-style: italic;
   padding: 2rem;
-  background: transparent;
+  background: rgba(54, 70, 79, 0.9);
   border-left: 3px solid var(--color-text);
+  border-right: none;
   border-radius: 8px;
   margin-bottom: 2rem;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
+  max-width: 100%;
+  text-align: right;
   font-weight: 300;
   color: var(--color-text-secondary);
+  backdrop-filter: blur(5px);
 }
 
 .question-box {
-  text-align: center;
+  text-align: right;
   font-size: 1.3rem;
   margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(54, 70, 79, 0.9);
+  border-radius: 8px;
+  max-width: 100%;
+  backdrop-filter: blur(5px);
 }
 
 .question-box p {
@@ -568,7 +784,7 @@ const scrollToNextSection = (currentSection) => {
 /* Munari Section */
 .principles {
   margin-bottom: 3rem;
-  text-align: left;
+  text-align: center;
   max-width: 900px;
   margin-left: auto;
   margin-right: auto;
@@ -576,12 +792,16 @@ const scrollToNextSection = (currentSection) => {
 
 .principle-item {
   display: flex;
-  gap: 1rem;
+  justify-content: center;
   margin-bottom: 1.5rem;
   font-size: 1.05rem;
   line-height: 1.7;
   font-weight: 300;
   color: var(--color-text-secondary);
+}
+
+.principle-item div {
+  text-align: center;
 }
 
 .principle-item strong {
@@ -658,39 +878,79 @@ const scrollToNextSection = (currentSection) => {
 }
 
 /* Problem to Method Section */
-.examples-box,
-.redefine-box,
-.generate-box {
+.problem-method-section .next-section-btn {
+  bottom: 1rem;
+}
+
+.method-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 900px;
+  margin: 0 auto 4rem;
+  align-items: center;
+}
+
+.method-step {
   background: var(--color-background-alt);
   padding: 2.5rem;
   border-radius: 12px;
-  border: 1px solid var(--color-border);
-  margin-bottom: 2rem;
-  max-width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: left;
+  border: 2px solid var(--color-border);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
 }
 
-.examples-box h3,
-.redefine-box h3,
-.generate-box h3 {
+.method-step:hover {
+  border-color: var(--color-text);
+  transform: translateY(-5px);
+}
+
+.method-step.highlighted {
+  border-color: var(--color-text);
+  background: var(--color-background-alt);
+}
+
+.step-number {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  background: var(--color-text);
+  color: var(--color-background);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: 'Oswald', sans-serif;
+}
+
+.step-title {
+  font-family: 'Oswald', sans-serif;
   color: var(--color-text);
   margin-bottom: 1.5rem;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 1rem;
 }
 
-.examples-list,
-.redefine-list,
-.generate-list {
+.step-list {
   list-style: none;
   padding-left: 0;
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-.examples-list li,
-.redefine-list li,
-.generate-list li {
+.step-list li {
   padding: 0.8rem 0 0.8rem 2rem;
   position: relative;
   font-size: 1.05rem;
@@ -699,33 +959,43 @@ const scrollToNextSection = (currentSection) => {
   color: var(--color-text-secondary);
 }
 
-.examples-list li::before {
-  content: "💭";
-  position: absolute;
-  left: 0;
-}
-
-.redefine-list li::before {
-  content: "❓";
-  position: absolute;
-  left: 0;
-}
-
-.generate-list li::before {
+.step-list li::before {
   content: "→";
   position: absolute;
   left: 0;
   color: var(--color-text);
   font-weight: 700;
+  font-size: 1.2rem;
 }
 
-.note {
+.step-note {
   margin-top: 1.5rem;
   padding-top: 1.5rem;
   border-top: 1px solid var(--color-border);
   font-style: italic;
   color: var(--color-text-muted);
   font-weight: 300;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.flow-arrow {
+  font-size: 2rem;
+  color: var(--color-text);
+  margin: 0.5rem 0;
+  animation: bounce-arrow 2s infinite;
+}
+
+@keyframes bounce-arrow {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
 }
 
 /* Proactivity Section */
@@ -830,7 +1100,8 @@ const scrollToNextSection = (currentSection) => {
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 3rem;
+  margin-top: auto;
+  margin-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -839,12 +1110,16 @@ const scrollToNextSection = (currentSection) => {
   width: 3.5rem;
   height: 3.5rem;
   animation: bounce-soft 2s infinite;
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .next-section-btn:hover {
   background: var(--color-text);
   color: var(--color-background);
-  transform: translateY(3px);
+  transform: translateX(-50%) translateY(3px);
 }
 
 @keyframes bounce-soft {
@@ -917,10 +1192,15 @@ const scrollToNextSection = (currentSection) => {
 
   .section {
     padding: 3rem 1rem;
+    min-height: 100vh;
   }
 
   .container {
     padding: 0 0.5rem;
+  }
+
+  .next-section-btn {
+    bottom: 1rem;
   }
 
   .methodology-grid,
@@ -928,16 +1208,29 @@ const scrollToNextSection = (currentSection) => {
     grid-template-columns: 1fr;
   }
 
+  .problem-flow {
+    flex-direction: column;
+  }
+
   .method-box,
-  .examples-box,
-  .redefine-box,
-  .generate-box,
   .principles,
   .quote,
   .problem-flow,
   .highlight-box,
   .final-message {
     padding: 1.5rem;
+  }
+
+  .method-step {
+    padding: 2rem 1.5rem;
+  }
+
+  .step-list {
+    max-width: 100%;
+  }
+
+  .step-title {
+    font-size: 1.3rem;
   }
 
   .back-to-top {
@@ -952,6 +1245,62 @@ const scrollToNextSection = (currentSection) => {
     width: 3rem;
     height: 3rem;
     font-size: 1.5rem;
+  }
+
+  .hero-image {
+    max-width: 300px;
+  }
+
+  .section-image {
+    max-width: 100%;
+    padding: 1rem;
+  }
+
+  .section-image-left,
+  .section-image-right {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: auto;
+    height: auto;
+    transform: none;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 0 2rem 0;
+    opacity: 0.5;
+  }
+
+  .section-image-right img {
+    height: auto;
+    width: 100%;
+  }
+
+  .creativity-section .container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    padding-top: 0;
+  }
+
+  .creativity-section .section-title {
+    text-align: center;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .quote,
+  .question-box {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .quote {
+    border-right: none;
+    border-left: 3px solid var(--color-text);
   }
 }
 </style>
