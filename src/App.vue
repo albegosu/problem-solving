@@ -5,6 +5,7 @@ import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 // Hero image is now loaded via CSS variable in style.css
 import methodologyImage from './assets/methodology.png'
 import einsteinImage from './assets/einstein.png'
+import bauhausImage from './assets/bauhaus.png'
 // import munariImage from './assets/munari-method.svg'
 
 const isVisible = ref(false)
@@ -136,9 +137,18 @@ const prevMethodStep = () => {
                 I only verbalize it, I don't start solving it</p>
                 <small>(Complaint, noise, not digging problem)</small>
             </div>
+            <div class="flow-item">
+              <span class="flow-emoji">🔧</span>
+              <p class="flow-item-text">
+                I have a problem <br>
+                <span class="arrow">↓</span> <br>
+                I fix it with the first idea that comes to mind</p>
+                <small>(Impulsiveness, no analysis,<br>
+                quick patches, no root cause)</small>
+            </div>
         </div>
         <div class="highlight-box">
-            What's more common in the team: not saying the problem or saying it without progressing?
+            What's more common in the team: <strong>not saying the problem or saying it without progressing?</strong>
         </div>
         <button class="next-section-btn" @click="scrollToNextSection('intro')" aria-label="Next section">
           ↓
@@ -151,6 +161,11 @@ const prevMethodStep = () => {
       <!-- Methodology image positioned at left -->
       <div class="section-image-left">
         <img :src="methodologyImage" alt="Design methodology" />
+      </div>
+
+      <!-- Bauhaus image positioned at right bottom -->
+      <div class="section-image-right-bottom">
+        <img :src="bauhausImage" alt="Bauhaus building" />
       </div>
       
       <div class="container">
@@ -387,7 +402,9 @@ const prevMethodStep = () => {
               <span class="example-badge">1</span>
               <h4>Define</h4>
             </div>
-            <p>Instead of "we're slow", we ask: What specifically is taking time? Is it planning, coding, testing, or deployment?</p>
+            <p>Instead of "we're slow", we ask: <br>
+               "What specifically is taking time?"<br>
+               "Is it planning, coding, testing, or deployment?"</p>
           </div>
 
           <!-- Step 2: Analyze -->
@@ -425,7 +442,7 @@ const prevMethodStep = () => {
               <li>Template for clearer user stories</li>
               <li>Pre-kickoff meeting for Q&A</li>
               <li>Definition of "ready" checklist</li>
-              <li>Pair PM with developer</li>
+              <li>Pair/Sync PM with developer</li>
             </ul>
           </div>
 
@@ -757,6 +774,26 @@ const prevMethodStep = () => {
   opacity: 0.4;
 }
 
+/* Section Images - Right Bottom Aligned */
+.section-image-right-bottom {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  max-width: 650px;
+  width: 45vw;
+  padding: 0;
+  margin: 0;
+  z-index: 0;
+}
+
+.section-image-right-bottom img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: grayscale(100%);
+  opacity: 0.4;
+}
+
 /* Section Images - Right Aligned (No Box) */
 .section-image-right {
   position: absolute;
@@ -782,7 +819,7 @@ const prevMethodStep = () => {
   font-family: 'Oswald', sans-serif;
   font-style: normal;
   font-size: 2.5rem;
-  font-weight: 400;
+  font-weight: 100;
   margin-bottom: 3rem;
   text-align: center;
   color: var(--color-text-primary);
@@ -795,9 +832,9 @@ const prevMethodStep = () => {
 /* Introduction Section */
 .problem-flow {
   display: flex;
-  gap: 5.5rem;
+  gap: 3rem;
   margin-bottom: 3rem;
-  max-width: 900px;
+  max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
   align-items: stretch;
@@ -883,13 +920,16 @@ const prevMethodStep = () => {
   max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid var(--color-border);
+  font-family: 'Inter', sans-serif; 
+  font-style: italic;
 }
 
 .highlight-box h3 {
+  font-family: 'Inter', sans-serif;  /* Usar Inter para itálica real */
   font-size: 2rem;
-  margin-bottom: 1rem;
   font-weight: 400;
+  font-style: italic;
+  margin-bottom: 1rem;
   color: var(--color-text);
 }
 
@@ -1956,7 +1996,8 @@ const prevMethodStep = () => {
   }
 
   .section-image-left,
-  .section-image-right {
+  .section-image-right,
+  .section-image-right-bottom {
     position: relative;
     left: 0;
     right: 0;
