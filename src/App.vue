@@ -9,6 +9,17 @@ import einsteinImage from './assets/einstein.png'
 
 const isVisible = ref(false)
 const showBackToTop = ref(false)
+const showIndex = ref(false)
+const activeSection = ref('intro')
+
+const sections = [
+  { id: 'intro', name: 'How we face problems' },
+  { id: 'methodology', name: 'Design Methodology' },
+  { id: 'creativity', name: 'Creativity' },
+  { id: 'munari', name: 'Munari Method' },
+  { id: 'problem-method', name: 'Problem to Method' },
+  { id: 'proactivity', name: 'Proactivity' }
+]
 
 onMounted(() => {
   setTimeout(() => {
@@ -23,7 +34,19 @@ onUnmounted(() => {
 })
 
 const handleScroll = () => {
+  const heroHeight = document.querySelector('.hero')?.offsetHeight || 0
   showBackToTop.value = window.scrollY > 500
+  showIndex.value = window.scrollY > heroHeight - 100
+  
+  // Detect active section
+  const scrollPosition = window.scrollY + 200
+  for (let i = sections.length - 1; i >= 0; i--) {
+    const section = document.getElementById(sections[i].id)
+    if (section && scrollPosition >= section.offsetTop) {
+      activeSection.value = sections[i].id
+      break
+    }
+  }
 }
 
 const scrollToSection = (sectionId) => {
@@ -38,10 +61,9 @@ const scrollToTop = () => {
 }
 
 const scrollToNextSection = (currentSection) => {
-  const sections = ['intro', 'methodology', 'creativity', 'munari', 'problem-method', 'proactivity']
-  const currentIndex = sections.indexOf(currentSection)
+  const currentIndex = sections.findIndex(s => s.id === currentSection)
   if (currentIndex < sections.length - 1) {
-    scrollToSection(sections[currentIndex + 1])
+    scrollToSection(sections[currentIndex + 1].id)
   }
 }
 </script>
@@ -84,7 +106,7 @@ const scrollToNextSection = (currentSection) => {
                 I say it <br>
                 <span class="arrow">↓</span> <br>
                 I only verbalize it, I don't start solving it</p>
-                <small>(Complaint, noise, not digging into the problem)</small>
+                <small>(Complaint, noise, not digging problem)</small>
             </div>
         </div>
         <div class="highlight-box">
@@ -122,10 +144,10 @@ const scrollToNextSection = (currentSection) => {
             <p>Understand the problem, generate alternatives and test solutions</p>
           </div>
         </div>
-        <button class="next-section-btn" @click="scrollToNextSection('methodology')" aria-label="Next section">
+      </div>
+      <button class="next-section-btn" @click="scrollToNextSection('methodology')" aria-label="Next section">
           ↓
         </button>
-      </div>
     </section>
 
     <!-- Creativity Section -->
@@ -147,10 +169,10 @@ const scrollToNextSection = (currentSection) => {
         <div class="question-box">
           <p class="italic">Is creativity only for art?</p>
         </div>
-        <button class="next-section-btn" @click="scrollToNextSection('creativity')" aria-label="Next section">
+      </div>
+      <button class="next-section-btn" @click="scrollToNextSection('creativity')" aria-label="Next section">
           ↓
         </button>
-      </div>
     </section>
 
     <!-- Munari Applied Section -->
@@ -281,6 +303,23 @@ const scrollToNextSection = (currentSection) => {
         </p>
       </div>
     </footer>
+
+    <!-- Navigation Index -->
+    <transition name="fade">
+      <nav v-if="showIndex" class="nav-index">
+        <ul>
+          <li 
+            v-for="section in sections" 
+            :key="section.id"
+            :class="{ active: activeSection === section.id }"
+          >
+            <a @click="scrollToSection(section.id)">
+              {{ section.name }}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </transition>
 
     <!-- Back to Top Button -->
     <transition name="fade">
@@ -731,16 +770,24 @@ const scrollToNextSection = (currentSection) => {
 .creativity-section {
   background: var(--color-background);
   color: var(--color-text-primary);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .creativity-section .container {
-  padding-top: 5rem;
-  max-width: 700px;
+  max-width: 50%;
+  margin-left: 5%;
+  margin-right: auto;
+  padding: 0 2rem;
+  z-index: 1;
+  position: relative;
 }
 
 .creativity-section .section-title {
   color: var(--color-text-primary);
-  text-align: right;
+  text-align: left;
   max-width: 100%;
 }
 
@@ -755,14 +802,14 @@ const scrollToNextSection = (currentSection) => {
   border-radius: 8px;
   margin-bottom: 2rem;
   max-width: 100%;
-  text-align: right;
+  text-align: left;
   font-weight: 300;
   color: var(--color-text-secondary);
   backdrop-filter: blur(5px);
 }
 
 .question-box {
-  text-align: right;
+  text-align: left;
   font-size: 1.3rem;
   margin-top: 2rem;
   padding: 1.5rem;
@@ -878,10 +925,6 @@ const scrollToNextSection = (currentSection) => {
 }
 
 /* Problem to Method Section */
-.problem-method-section .next-section-btn {
-  bottom: 1rem;
-}
-
 .method-flow {
   display: flex;
   flex-direction: column;
@@ -1091,6 +1134,10 @@ const scrollToNextSection = (currentSection) => {
 
 /* Navigation Buttons */
 .next-section-btn {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  margin-left: -1.75rem;
   background: transparent;
   color: var(--color-text);
   border: 2px solid var(--color-text);
@@ -1100,38 +1147,64 @@ const scrollToNextSection = (currentSection) => {
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: auto;
-  margin-bottom: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: auto;
-  margin-right: auto;
   width: 3.5rem;
   height: 3.5rem;
-  animation: bounce-soft 2s infinite;
-  position: absolute;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
+  z-index: 10;
 }
 
 .next-section-btn:hover {
   background: var(--color-text);
   color: var(--color-background);
-  transform: translateX(-50%) translateY(3px);
 }
 
-@keyframes bounce-soft {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
+/* Navigation Index */
+.nav-index {
+  position: fixed;
+  right: 3rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 900;
+}
+
+.nav-index ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-index li {
+  margin-bottom: 1.5rem;
+  text-align: right;
+}
+
+.nav-index a {
+  font-family: 'Oswald', sans-serif;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-right: 2px solid var(--color-border);
+  position: relative;
+}
+
+.nav-index a:hover {
+  color: var(--color-text-secondary);
+  border-right-color: var(--color-text);
+}
+
+.nav-index li.active a {
+  color: var(--color-text-primary);
+  border-right-color: var(--color-text);
+  font-weight: 400;
 }
 
 /* Back to Top Button */
@@ -1199,9 +1272,6 @@ const scrollToNextSection = (currentSection) => {
     padding: 0 0.5rem;
   }
 
-  .next-section-btn {
-    bottom: 1rem;
-  }
 
   .methodology-grid,
   .proactivity-content {
@@ -1241,6 +1311,16 @@ const scrollToNextSection = (currentSection) => {
     font-size: 1.2rem;
   }
 
+  .nav-index {
+    right: 0.5rem;
+    transform: translateY(-50%) scale(0.85);
+  }
+
+  .nav-index a {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+  }
+
   .next-section-btn {
     width: 3rem;
     height: 3rem;
@@ -1276,11 +1356,16 @@ const scrollToNextSection = (currentSection) => {
     width: 100%;
   }
 
+  .creativity-section {
+    display: flex;
+    flex-direction: column;
+  }
+
   .creativity-section .container {
     margin-left: auto;
     margin-right: auto;
     max-width: 100%;
-    padding-top: 0;
+    padding: 0 1rem;
   }
 
   .creativity-section .section-title {
