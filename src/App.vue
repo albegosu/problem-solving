@@ -662,7 +662,7 @@ const prevMethodStep = () => {
       <div class="container">
         <p>Problem solving methodology</p>
         <p class="instagram-link">
-          <a href="https://dash.resiz.es/" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.google.com/search?newwindow=1&sca_esv=85875b56016a6e07&udm=2&fbs=AIIjpHx4nJjfGojPVHhEACUHPiMQWNB731WlIk-5kXFc8xThmHWnjQzcMhUOnmcqfVJMidOh0hy5PH-T4mIzXnrdovKzyhmzMypwRP-YxgB2v85gyzoRLh4DBCUjdfyuRZfP-h9aecCs_pxXX_gM2E4PosmlGraK8YLCGG2G051J1gjhKYr5eM_TMfQGthYX6Ghk1YpNajQRemjBz8sCnOrRY9T0vst98A&q=what+is+the+best+knife+for+the+jungle&sa=X&ved=2ahUKEwjPvvKGjaWRAxUhV6QEHf0JEFsQtKgLegQIGxAB&biw=1800&bih=948&dpr=2" target="_blank" rel="noopener noreferrer">
             See more in my PRO plan 'Surviving Resizes' →
           </a>
         </p>
