@@ -23,7 +23,8 @@ const sections = [
   { id: 'problem-method', name: 'Problem to Method' },
   { id: 'proactivity', name: 'Proactivity' },
   { id: 'techniques', name: 'Practical Techniques' },
-  { id: 'example', name: 'Practical Example' }
+  { id: 'example', name: 'Practical Example' },
+  { id: 'culture', name: 'Building Culture' }
 ]
 
 const handleScroll = () => {
@@ -600,6 +601,60 @@ const prevMethodStep = () => {
           <p class="example-tagline">Method over drama.</p>
         </div>
       </div>
+      <button class="next-section-btn" @click="scrollToNextSection('example')" aria-label="Next section">
+        ↓
+      </button>
+    </section>
+
+    <!-- Culture Section - Final Message -->
+    <section id="culture" class="section culture-section">
+      <div class="container">
+        <div class="culture-content">
+          <h2 class="culture-title">This is not an exact science</h2>
+          
+          <div class="culture-message">
+            <p class="culture-text">
+              There's no magic formula that works for every problem or every team. 
+              <strong>What matters is the intention:</strong> 
+              stop reacting to problems as emergencies and start treating them as opportunities to improve.
+            </p>
+          </div>
+
+          <div class="culture-grid">
+            <div class="culture-card">
+              <div class="culture-icon">🌱</div>
+              <h3>It's about culture</h3>
+              <p>A team that asks "why" before jumping to solutions builds better products and grows together.</p>
+            </div>
+
+            <div class="culture-card">
+              <div class="culture-icon">🔄</div>
+              <h3>It's about iteration</h3>
+              <p>You won't get it right the first time. The method itself improves as you use it.</p>
+            </div>
+
+            <div class="culture-card">
+              <div class="culture-icon">🎯</div>
+              <h3>It's about consistency</h3>
+              <p>One methodical approach beats a hundred brilliant but chaotic ideas.</p>
+            </div>
+          </div>
+
+          <div class="culture-quote">
+            <p class="culture-quote-text">
+              "Problems don't disappear. But a team that knows how to face them <strong>transforms problems into progress.</strong>"
+            </p>
+          </div>
+
+          <div class="culture-cta">
+            <p>Start small. Pick one problem. Apply the method. See what happens.</p>
+            <p class="culture-cta-emphasis">The best time to start was yesterday. The second best time is now.</p>
+          </div>
+        </div>
+      </div>
+      <button class="back-to-top-alt" @click="scrollToTop" aria-label="Back to top">
+        ↑ Back to top
+      </button>
     </section>
 
     <!-- Footer -->
@@ -1865,8 +1920,8 @@ const prevMethodStep = () => {
 
 /* Footer section */
 .example-footer {
-  background: var(--color-background-alt);
-  padding: 2.5rem;
+
+  padding: 1rem;
   border-radius: 12px;
   text-align: center;
   max-width: 700px;
@@ -1888,6 +1943,171 @@ const prevMethodStep = () => {
   font-family: 'Oswald', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+/* Culture Section - Final Message */
+.culture-section {
+  background: linear-gradient(180deg, var(--color-background) 0%, var(--color-background-alt) 100%);
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.culture-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.culture-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 3rem;
+  text-align: center;
+  color: var(--color-text);
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.culture-message {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.culture-text {
+  font-size: 1.3rem;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+  font-weight: 300;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.culture-text strong {
+  color: var(--color-text);
+  font-weight: 400;
+}
+
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 4rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.culture-card {
+  background: var(--color-background-alt);
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  padding: 2.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.culture-card:hover {
+  border-color: var(--color-text);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(194, 122, 159, 0.15);
+}
+
+.culture-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.culture-card h3 {
+  font-family: 'Oswald', sans-serif;
+  color: var(--color-text);
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.culture-card p {
+  color: var(--color-text-secondary);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.culture-quote {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 4px solid var(--color-text);
+  padding: 2.5rem 3rem;
+  margin: 4rem auto;
+  max-width: 900px;
+  border-radius: 8px;
+}
+
+.culture-quote-text {
+  font-size: 1.4rem;
+  line-height: 1.8;
+  color: var(--color-text-primary);
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  margin: 0;
+}
+
+.culture-quote-text strong {
+  color: var(--color-text);
+  font-weight: 400;
+  font-style: normal;
+}
+
+.culture-cta {
+  text-align: center;
+  padding: 3rem 2rem;
+  background: var(--color-background-alt);
+  border: 2px solid var(--color-text);
+  border-radius: 12px;
+  max-width: 800px;
+  margin: 0 auto 3rem;
+}
+
+.culture-cta p {
+  font-size: 1.2rem;
+  color: var(--color-text-primary);
+  margin: 0.5rem 0;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.culture-cta-emphasis {
+  color: var(--color-text);
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 1.5rem;
+}
+
+.back-to-top-alt {
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  padding: 1rem 3rem;
+  font-size: 1.1rem;
+  font-weight: 400;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.05em;
+  display: block;
+  margin: 0 auto;
+}
+
+.back-to-top-alt:hover {
+  background: var(--color-text);
+  color: var(--color-background);
+  transform: translateY(-3px);
 }
 
 /* Footer */
@@ -2147,6 +2367,55 @@ const prevMethodStep = () => {
   }
 
   .techniques-footer p {
+    font-size: 1rem;
+  }
+
+  .culture-title {
+    font-size: 2rem;
+    padding: 0 1rem;
+  }
+
+  .culture-text {
+    font-size: 1.1rem;
+  }
+
+  .culture-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .culture-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .culture-card h3 {
+    font-size: 1.4rem;
+  }
+
+  .culture-quote {
+    padding: 2rem 1.5rem;
+    margin: 3rem 1rem;
+  }
+
+  .culture-quote-text {
+    font-size: 1.2rem;
+  }
+
+  .culture-cta {
+    padding: 2rem 1.5rem;
+    margin: 0 1rem 2rem;
+  }
+
+  .culture-cta p {
+    font-size: 1.1rem;
+  }
+
+  .culture-cta-emphasis {
+    font-size: 1.2rem;
+  }
+
+  .back-to-top-alt {
+    padding: 0.9rem 2rem;
     font-size: 1rem;
   }
 
