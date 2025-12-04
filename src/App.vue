@@ -772,12 +772,12 @@ const scrollToNextSection = (currentSection) => {
   color: var(--color-text-primary);
   position: relative;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: right;
+  justify-content: right;
 }
 
 .creativity-section .container {
-  max-width: 50%;
+  max-width: 40%;
   margin-left: 5%;
   margin-right: auto;
   padding: 0 2rem;
@@ -787,7 +787,7 @@ const scrollToNextSection = (currentSection) => {
 
 .creativity-section .section-title {
   color: var(--color-text-primary);
-  text-align: left;
+  text-align: right;
   max-width: 100%;
 }
 
@@ -795,21 +795,21 @@ const scrollToNextSection = (currentSection) => {
   font-size: 1.2rem;
   line-height: 1.8;
   font-style: italic;
-  padding: 2rem;
+  padding: 2rem 0 2rem 2rem;
   background: rgba(54, 70, 79, 0.9);
   border-left: 3px solid var(--color-text);
   border-right: none;
   border-radius: 8px;
   margin-bottom: 2rem;
   max-width: 100%;
-  text-align: left;
+  text-align: right;
   font-weight: 300;
   color: var(--color-text-secondary);
   backdrop-filter: blur(5px);
 }
 
 .question-box {
-  text-align: left;
+  text-align: center;
   font-size: 1.3rem;
   margin-top: 2rem;
   padding: 1.5rem;
