@@ -22,6 +22,7 @@ const sections = [
   { id: 'munari', name: 'Munari Method' },
   { id: 'problem-method', name: 'Problem to Method' },
   { id: 'proactivity', name: 'Proactivity' },
+  { id: 'techniques', name: 'Practical Techniques' },
   { id: 'example', name: 'Practical Example' }
 ]
 
@@ -366,6 +367,79 @@ const prevMethodStep = () => {
         <button class="next-section-btn" @click="scrollToNextSection('proactivity')" aria-label="Next section">
           ↓
         </button>
+    </section>
+
+    <!-- Practical Techniques Section -->
+    <section id="techniques" class="section techniques-section">
+      <div class="container">
+        <h2 class="section-title">Practical Techniques</h2>
+        <p class="section-subtitle">Tools to unlock better problem-solving</p>
+        
+        <div class="techniques-grid">
+          <!-- 5 Why Technique -->
+          <div class="technique-card">
+            <div class="technique-icon">🎯</div>
+            <h3>5 Why Technique</h3>
+            <p class="technique-description">Keep asking "why" until you reach the root cause</p>
+            <div class="technique-example">
+              <strong>Example:</strong>
+              <ul>
+                <li>"Why is the deployment failing?" → <em>Missing dependency</em></li>
+                <li>"Why is the dependency missing?" → <em>Not in package.json</em></li>
+                <li>"Why wasn't it added?" → <em>No checklist for new deps</em></li>
+                <li>"Why no checklist?" → <em>No process documentation</em></li>
+                <li>"Why no docs?" → <em>Team lacks time for process improvement</em></li>
+              </ul>
+              <p class="technique-insight">💡 <strong>Root cause:</strong> Need to allocate time for process documentation</p>
+            </div>
+          </div>
+
+          <!-- Worst Possible Solution -->
+          <div class="technique-card">
+            <div class="technique-icon">💡</div>
+            <h3>Worst Possible Solution</h3>
+            <p class="technique-description">Think of the worst solution to unlock creative ideas</p>
+            <div class="technique-example">
+              <strong>Example:</strong>
+              <p><em>Problem: Team communication is inefficient</em></p>
+              <strong>Worst solutions:</strong>
+              <ul>
+                <li>❌ Have 10 daily meetings</li>
+                <li>❌ Use 5 different chat apps</li>
+                <li>❌ Only communicate via email chains</li>
+                <li>❌ No documentation, only verbal</li>
+              </ul>
+              <p class="technique-insight">💡 <strong>Now reverse it:</strong> One async update, single tool, clear docs</p>
+            </div>
+          </div>
+
+          <!-- Reverse Thinking -->
+          <div class="technique-card">
+            <div class="technique-icon">🔄</div>
+            <h3>Reverse Thinking</h3>
+            <p class="technique-description">Ask "How could we make this worse?" then do the opposite</p>
+            <div class="technique-example">
+              <strong>Example:</strong>
+              <p><em>Problem: Low code quality</em></p>
+              <strong>How to make it worse?</strong>
+              <ul>
+                <li>❌ No code reviews</li>
+                <li>❌ No tests</li>
+                <li>❌ Deploy on Fridays without testing</li>
+                <li>❌ Ignore linter warnings</li>
+              </ul>
+              <p class="technique-insight">💡 <strong>Solution:</strong> Do the opposite → Reviews, tests, safe deploys, linting</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="techniques-footer">
+          <p>These techniques help you <strong>avoid jumping to solutions</strong> and instead <strong>explore the problem space</strong> first.</p>
+        </div>
+      </div>
+      <button class="next-section-btn" @click="scrollToNextSection('techniques')" aria-label="Next section">
+        ↓
+      </button>
     </section>
 
     <!-- Practical Example Section -->
@@ -723,7 +797,7 @@ const prevMethodStep = () => {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1700px;
   margin: 0 auto;
   width: 100%;
   padding: 0 1rem;
@@ -1186,7 +1260,6 @@ const prevMethodStep = () => {
 /* Problem to Method Section */
 .method-viewport {
   position: relative;
-  max-width: 1200px;
   min-height: 450px;
   display: flex;
   align-items: center;
@@ -1444,6 +1517,146 @@ const prevMethodStep = () => {
   line-height: 1.6;
   font-weight: 400;
   color: var(--color-text);
+}
+
+/* Practical Techniques Section */
+.techniques-section {
+  background: var(--color-background);
+  padding: 5rem 2rem;
+}
+
+.techniques-section .section-subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.techniques-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  max-width: 1800px;
+  margin: 0 auto 3rem;
+}
+
+.technique-card {
+  background: var(--color-background-alt);
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.technique-card:hover {
+  border-color: var(--color-text);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(194, 122, 159, 0.15);
+}
+
+.technique-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.technique-card h3 {
+  font-family: 'Oswald', sans-serif;
+  color: var(--color-text);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+
+.technique-description {
+  color: var(--color-text-primary);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.technique-example {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 3px solid var(--color-text);
+  height: auto;
+  margin-bottom: auto;
+}
+
+.technique-example strong {
+  color: var(--color-text);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.technique-example ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0.8rem 0;
+}
+
+.technique-example li {
+  padding: 0.4rem 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  font-weight: 300;
+}
+
+.technique-example em {
+  color: var(--color-text-primary);
+  font-style: italic;
+}
+
+.technique-insight {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border);
+  font-size: 1rem;
+  color: var(--color-text-primary);
+  font-weight: 400;
+}
+
+.technique-insight strong {
+  color: var(--color-text);
+  text-transform: none;
+  font-size: 1rem;
+}
+
+.techniques-footer {
+  background: var(--color-background-alt);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.techniques-footer p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0;
+  color: var(--color-text-primary);
+  font-weight: 300;
+}
+
+.techniques-footer strong {
+  color: var(--color-text);
+  font-weight: 400;
 }
 
 /* Practical Example Section */
@@ -1906,6 +2119,35 @@ const prevMethodStep = () => {
 
   .step-title {
     font-size: 1.3rem;
+  }
+
+  .techniques-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .technique-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .technique-card h3 {
+    font-size: 1.5rem;
+  }
+
+  .technique-description {
+    font-size: 1rem;
+  }
+
+  .technique-example {
+    padding: 1.2rem;
+  }
+
+  .techniques-footer {
+    padding: 1.5rem;
+  }
+
+  .techniques-footer p {
+    font-size: 1rem;
   }
 
   .example-card {
