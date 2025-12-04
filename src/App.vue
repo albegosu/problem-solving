@@ -52,10 +52,10 @@ const scrollToNextSection = (currentSection) => {
     <section class="hero" :class="{ 'fade-in': isVisible }">
       <div class="container">
         <!-- Hero image is now a background with color overlay -->
-        <h1 class="hero-title">¿Tienes problemas?</h1>
-        <p class="hero-subtitle">Metodología para la supervivencia</p>
+        <h1 class="hero-title">Got problems?</h1>
+        <p class="hero-subtitle">Methodology for survival</p>
         <button class="cta-button" @click="scrollToSection('intro')">
-          ¿Comenzamos?
+          Let's begin?
         </button>
       </div>
       <div class="scroll-indicator">
@@ -66,31 +66,31 @@ const scrollToNextSection = (currentSection) => {
     <!-- Introduction Section -->
     <section id="intro" class="section intro-section">
       <div class="container">
-        <h2 class="section-title">¿Cómo enfrentamos los problemas?</h2>
+        <h2 class="section-title">How do we face problems?</h2>
         <div class="problem-flow">
             <div class="flow-item">
               <span class="flow-emoji">🤐</span>
               <p class="flow-item-text">
-                Tengo un problema <br>
+                I have a problem <br>
                 <span class="arrow">↓</span> <br>
-                No lo digo <br>
+                I don't say it <br>
                 <span class="arrow">↓</span> <br>
-                Se enquista</p>
-              <small>(Miedo, indecisión, cultura del silencio)</small>
+                It becomes entrenched</p>
+              <small>(Fear, indecision, culture of silence)</small>
             </div>
             <div class="flow-item">
               <span class="flow-emoji">💬</span>
               <p class="flow-item-text">
-                Lo digo <br>
+                I say it <br>
                 <span class="arrow">↓</span> <br>
-                Solo lo verbalizo, no inicio la resolución</p>
-                <small>(Queja, ruido, no ahondar en el problema)</small>
+                I only verbalize it, I don't start solving it</p>
+                <small>(Complaint, noise, not digging into the problem)</small>
             </div>
         </div>
         <div class="highlight-box">
-            ¿Qué es más frecuente en el equipo: no decir el problema o decirlo sin avanzar?
+            What's more common in the team: not saying the problem or saying it without progressing?
         </div>
-        <button class="next-section-btn" @click="scrollToNextSection('intro')" aria-label="Siguiente sección">
+        <button class="next-section-btn" @click="scrollToNextSection('intro')" aria-label="Next section">
           ↓
         </button>
       </div>
@@ -104,25 +104,25 @@ const scrollToNextSection = (currentSection) => {
       </div>
       
       <div class="container">
-        <h2 class="section-title">Enfocados en: <br>
-          <span class="section-title-small"> Metodología de diseño</span></h2>
+        <h2 class="section-title">Focused on: <br>
+          <span class="section-title-small">Design Methodology</span></h2>
         
         <div class="methodology-grid">
           <div class="methodology-card">
-            <h3>'¿Cómo nacen los objetos?'</h3>
+            <h3>'How are objects born?'</h3>
             <span class="arrow">↓</span>
             <h3>Bruno Munari</h3>
           </div>
           <div class="methodology-card">
-            <h4>Metodología proyectual</h4>
-            <p>Proceso estructurado</p>
+            <h4>Project Methodology</h4>
+            <p>Structured process</p>
           </div>
           <div class="methodology-card">
             <h4>Design Thinking</h4>
-            <p>Entender el problema, generar alternativas y testear soluciones</p>
+            <p>Understand the problem, generate alternatives and test solutions</p>
           </div>
         </div>
-        <button class="next-section-btn" @click="scrollToNextSection('methodology')" aria-label="Siguiente sección">
+        <button class="next-section-btn" @click="scrollToNextSection('methodology')" aria-label="Next section">
           ↓
         </button>
       </div>
@@ -136,18 +136,18 @@ const scrollToNextSection = (currentSection) => {
       </div>
       
       <div class="container">
-        <h2 class="section-title">Idea romántica de la creatividad</h2>
+        <h2 class="section-title">The romantic idea of creativity</h2>
         <blockquote class="quote">
-          "Cuando hablamos de resolver problemas, solemos pensar en intuición, experiencia o improvisación. 
-          Pero Bruno Munari nos recuerda que 
-          <span class="quote-stroke">cualquier proceso
-          <span class="quote-stroke-span">—desde diseñar un objeto hasta desarrollar software— </span>
-          mejora cuando abandonamos la idea romántica del 'genio' y adoptamos un método claro..."</span> 
+          "When we talk about solving problems, we usually think of intuition, experience or improvisation. 
+          But Bruno Munari reminds us that 
+          <span class="quote-stroke">any process
+          <span class="quote-stroke-span">—from designing an object to developing software— </span>
+          improves when we abandon the romantic idea of 'genius' and adopt a clear method..."</span> 
         </blockquote>
         <div class="question-box">
-          <p class="italic">¿La creatividad es solo para el arte?</p>
+          <p class="italic">Is creativity only for art?</p>
         </div>
-        <button class="next-section-btn" @click="scrollToNextSection('creativity')" aria-label="Siguiente sección">
+        <button class="next-section-btn" @click="scrollToNextSection('creativity')" aria-label="Next section">
           ↓
         </button>
       </div>
@@ -156,7 +156,7 @@ const scrollToNextSection = (currentSection) => {
     <!-- Munari Applied Section -->
     <section id="munari" class="section munari-section">
       <div class="container">
-        <h2 class="section-title">Munari aplicado al software</h2>
+        <h2 class="section-title">Munari applied to software</h2>
         
         <!-- Uncomment when you add munari image to assets -->
         <!-- <div class="section-image">
@@ -166,31 +166,31 @@ const scrollToNextSection = (currentSection) => {
         <div class="principles">
           <div class="principle-item">
             <div>
-              <strong>Desmitificar la creatividad</strong> <br>
-              No se buscan genios. Se esperan alcanzar procesos reproducibles
+              <strong>Demystify creativity</strong> <br>
+              We're not looking for geniuses. We expect to achieve reproducible processes
             </div>
           </div>
           <div class="principle-item">
             <div>
-              <strong>El diseño es una forma ordenada de resolver problemas</strong> <br>
-              Igual que escribir un feature, refactorizar, o corregir un bug
+              <strong>Design is an orderly way to solve problems</strong> <br>
+              Just like writing a feature, refactoring, or fixing a bug
             </div>
           </div>
         </div>
         
         <div class="method-box">
-          <h3>Método básico de Munari (ultra resumido):</h3>
+          <h3>Munari's basic method (ultra summarized):</h3>
           <ol class="method-steps">
-            <li>Definir el problema</li>
-            <li>Analizar contexto</li>
-            <li>Generar opciones → Trasladar la duda/necesidad</li>
-            <li>Prototipar</li>
-            <li>Evaluar</li>
-            <li>Seleccionar la solución más simple y eficaz</li>
+            <li>Define the problem</li>
+            <li>Analyze context</li>
+            <li>Generate options → Transfer the doubt/need</li>
+            <li>Prototype</li>
+            <li>Evaluate</li>
+            <li>Select the simplest and most effective solution</li>
           </ol>
-          <p class="method-quote">"El método como antídoto al drama del problema."</p>
+          <p class="method-quote">"Method as an antidote to the drama of the problem."</p>
         </div>
-        <button class="next-section-btn" @click="scrollToNextSection('munari')" aria-label="Siguiente sección">
+        <button class="next-section-btn" @click="scrollToNextSection('munari')" aria-label="Next section">
           ↓
         </button>
       </div>
@@ -199,16 +199,16 @@ const scrollToNextSection = (currentSection) => {
     <!-- From Problem to Method Section -->
     <section id="problem-method" class="section problem-method-section">
       <div class="container">
-        <h2 class="section-title">"De problema a método"</h2>
+        <h2 class="section-title">"From problem to method"</h2>
         
         <div class="method-flow">
           <div class="method-step">
             <div class="step-number">1</div>
-            <h3 class="step-title">Ejemplos</h3>
+            <h3 class="step-title">Examples</h3>
             <ul class="step-list">
-              <li>"No entiendo bien los criterios de aceptación de mi tarea."</li>
-              <li>"Hay fricción entre dos equipos."</li>
-              <li>"No tengo claridad en prioridades."</li>
+              <li>"I don't understand the acceptance criteria for my task."</li>
+              <li>"There's friction between two teams."</li>
+              <li>"I don't have clarity on priorities."</li>
             </ul>
           </div>
 
@@ -216,12 +216,12 @@ const scrollToNextSection = (currentSection) => {
 
           <div class="method-step">
             <div class="step-number">2</div>
-            <h3 class="step-title">Redefinir</h3>
+            <h3 class="step-title">Redefine</h3>
             <ul class="step-list">
-              <li>¿Cuál es realmente el problema?</li>
-              <li>¿Qué condiciones lo rodean?</li>
-              <li>¿Qué parte es ambigua?</li>
-              <li>¿Qué sería una definición clara, concreta, neutral del problema?</li>
+              <li>What is the real problem?</li>
+              <li>What conditions surround it?</li>
+              <li>What part is ambiguous?</li>
+              <li>What would be a clear, concrete, neutral definition of the problem?</li>
             </ul>
           </div>
 
@@ -229,17 +229,17 @@ const scrollToNextSection = (currentSection) => {
 
           <div class="method-step">
             <div class="step-number">3</div>
-            <h3 class="step-title">Generar caminos</h3>
+            <h3 class="step-title">Generate paths</h3>
             <ul class="step-list">
-              <li>No soluciones completas</li>
-              <li>Solo alternativas</li>
-              <li>Opciones que derivan en opciones</li>
+              <li>Not complete solutions</li>
+              <li>Only alternatives</li>
+              <li>Options that lead to options</li>
             </ul>
-            <p class="step-note">Munari insistía en que la creatividad surge cuando existe variedad, no cuando buscamos la "respuesta perfecta" a la primera.</p>
+            <p class="step-note">Munari insisted that creativity arises when there is variety, not when we look for the "perfect answer" at first.</p>
           </div>
         </div>
 
-        <button class="next-section-btn" @click="scrollToNextSection('problem-method')" aria-label="Siguiente sección">
+        <button class="next-section-btn" @click="scrollToNextSection('problem-method')" aria-label="Next section">
           ↓
         </button>
       </div>
@@ -248,24 +248,24 @@ const scrollToNextSection = (currentSection) => {
     <!-- Proactivity Section -->
     <section id="proactivity" class="section proactivity-section">
       <div class="container">
-        <h2 class="section-title">Proactividad ≠ espontaneidad</h2>
+        <h2 class="section-title">Proactivity ≠ spontaneity</h2>
         <div class="proactivity-content">
           <div class="proactivity-item">
             <span class="icon">🎯</span>
-            <p>La iniciativa no es actuar sin pensar, sino iniciar un proceso consciente.</p>
+            <p>Initiative is not acting without thinking, but starting a conscious process.</p>
           </div>
           <div class="proactivity-item">
             <span class="icon">💻</span>
-            <p>En tecnología, donde los problemas son constantes, el diseño como método es una herramienta extremadamente poderosa.</p>
+            <p>In technology, where problems are constant, design as a method is an extremely powerful tool.</p>
           </div>
           <div class="proactivity-item">
             <span class="icon">🔄</span>
-            <p>Un problema empieza a resolverse cuando deja de ser un drama y se convierte en un proceso.</p>
+            <p>A problem begins to be solved when it stops being a drama and becomes a process.</p>
           </div>
         </div>
         
         <div class="final-message">
-          <h3>No se buscan héroes que resuelvan problemas, sino equipos que sepan diseñar soluciones.</h3>
+          <h3>We're not looking for heroes who solve problems, but teams that know how to design solutions.</h3>
         </div>
       </div>
     </section>
@@ -273,10 +273,10 @@ const scrollToNextSection = (currentSection) => {
     <!-- Footer -->
     <footer class="footer">
       <div class="container">
-        <p>Metodología para la resolución de problemas</p>
+        <p>Problem solving methodology</p>
         <p class="instagram-link">
           <a href="https://dash.resiz.es/" target="_blank" rel="noopener noreferrer">
-            Ver más en mi plan PRO 'Sobreviviendo a Resizes' →
+            See more in my PRO plan 'Surviving Resizes' →
           </a>
         </p>
       </div>
@@ -288,7 +288,7 @@ const scrollToNextSection = (currentSection) => {
         v-if="showBackToTop" 
         class="back-to-top"
         @click="scrollToTop"
-        aria-label="Volver arriba"
+        aria-label="Back to top"
       >
         ↑
       </button>
