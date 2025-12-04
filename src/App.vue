@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 
 // Import images (uncomment when you add them to assets folder)
 // Hero image is now loaded via CSS variable in style.css
@@ -11,6 +11,8 @@ const isVisible = ref(false)
 const showBackToTop = ref(false)
 const showIndex = ref(false)
 const activeSection = ref('intro')
+const activeExampleStep = ref(0)
+const activeMethodStep = ref(1)
 
 const sections = [
   { id: 'intro', name: 'How we face problems' },
@@ -18,20 +20,9 @@ const sections = [
   { id: 'creativity', name: 'Creativity' },
   { id: 'munari', name: 'Munari Method' },
   { id: 'problem-method', name: 'Problem to Method' },
-  { id: 'proactivity', name: 'Proactivity' }
+  { id: 'proactivity', name: 'Proactivity' },
+  { id: 'example', name: 'Practical Example' }
 ]
-
-onMounted(() => {
-  setTimeout(() => {
-    isVisible.value = true
-  }, 100)
-  
-  window.addEventListener('scroll', handleScroll)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('scroll', handleScroll)
-})
 
 const handleScroll = () => {
   const heroHeight = document.querySelector('.hero')?.offsetHeight || 0
@@ -48,6 +39,18 @@ const handleScroll = () => {
     }
   }
 }
+
+onMounted(() => {
+  setTimeout(() => {
+    isVisible.value = true
+  }, 100)
+  
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 
 const scrollToSection = (sectionId) => {
   const element = document.getElementById(sectionId)
@@ -66,6 +69,31 @@ const scrollToNextSection = (currentSection) => {
     scrollToSection(sections[currentIndex + 1].id)
   }
 }
+
+const nextStep = () => {
+  if (activeExampleStep.value < 6) {
+    activeExampleStep.value++
+  }
+}
+
+const prevStep = () => {
+  if (activeExampleStep.value > 0) {
+    activeExampleStep.value--
+  }
+}
+
+const nextMethodStep = () => {
+  if (activeMethodStep.value < 3) {
+    activeMethodStep.value++
+  }
+}
+
+const prevMethodStep = () => {
+  if (activeMethodStep.value > 1) {
+    activeMethodStep.value--
+  }
+}
+
 </script>
 
 <template>
@@ -223,8 +251,12 @@ const scrollToNextSection = (currentSection) => {
       <div class="container">
         <h2 class="section-title">"From problem to method"</h2>
         
-        <div class="method-flow">
-          <div class="method-step">
+        <div class="method-viewport">
+          <!-- Step 1: Examples -->
+          <div 
+            class="method-step method-card-center"
+            v-show="activeMethodStep === 1"
+          >
             <div class="step-number">1</div>
             <h3 class="step-title">Examples</h3>
             <ul class="step-list">
@@ -234,9 +266,11 @@ const scrollToNextSection = (currentSection) => {
             </ul>
           </div>
 
-          <div class="flow-arrow">↓</div>
-
-          <div class="method-step">
+          <!-- Step 2: Redefine -->
+          <div 
+            class="method-step method-card-center"
+            v-show="activeMethodStep === 2"
+          >
             <div class="step-number">2</div>
             <h3 class="step-title">Redefine</h3>
             <ul class="step-list">
@@ -247,9 +281,11 @@ const scrollToNextSection = (currentSection) => {
             </ul>
           </div>
 
-          <div class="flow-arrow">↓</div>
-
-          <div class="method-step">
+          <!-- Step 3: Generate paths -->
+          <div 
+            class="method-step method-card-center"
+            v-show="activeMethodStep === 3"
+          >
             <div class="step-number">3</div>
             <h3 class="step-title">Generate paths</h3>
             <ul class="step-list">
@@ -259,6 +295,28 @@ const scrollToNextSection = (currentSection) => {
             </ul>
             <p class="step-note">Munari insisted that creativity arises when there is variety, not when we look for the "perfect answer" at first.</p>
           </div>
+        </div>
+
+        <div class="method-navigation">
+          <button
+            class="method-nav-btn"
+            @click="prevMethodStep"
+            :disabled="activeMethodStep <= 1"
+          >
+            ↑ Previous
+          </button>
+
+          <div class="method-progress">
+            Step {{ activeMethodStep }} of 3
+          </div>
+
+          <button
+            class="method-nav-btn"
+            @click="nextMethodStep"
+            :disabled="activeMethodStep >= 3"
+          >
+            Next ↓
+          </button>
         </div>
 
         <button class="next-section-btn" @click="scrollToNextSection('problem-method')" aria-label="Next section">
@@ -288,6 +346,167 @@ const scrollToNextSection = (currentSection) => {
         
         <div class="final-message">
           <h3>We're not looking for heroes who solve problems, but teams that know how to design solutions.</h3>
+        </div>
+      </div>
+        <button class="next-section-btn" @click="scrollToNextSection('proactivity')" aria-label="Next section">
+          ↓
+        </button>
+    </section>
+
+    <!-- Practical Example Section -->
+    <section id="example" class="section example-section">
+      <div class="example-container">
+        <h2 class="section-title">Practical Example</h2>
+
+        <div class="example-cards-container">
+          <!-- Step 0: Scenario -->
+          <div 
+            class="example-card" 
+            :class="{ 
+              'card-center': activeExampleStep === 0,
+              'card-left': activeExampleStep > 0,
+              'card-right': activeExampleStep < 0
+            }"
+            v-show="activeExampleStep === 0 || activeExampleStep === 1"
+          >
+            <h3 class="example-card-title">Scenario</h3>
+            <p class="example-card-text">"Our team is taking too long to deliver features"</p>
+          </div>
+
+          <!-- Step 1: Define -->
+          <div 
+            class="example-card"
+            :class="{ 
+              'card-center': activeExampleStep === 1,
+              'card-left': activeExampleStep > 1,
+              'card-right': activeExampleStep < 1
+            }"
+            v-show="activeExampleStep >= 0 && activeExampleStep <= 2"
+          >
+            <div class="example-card-header">
+              <span class="example-badge">1</span>
+              <h4>Define</h4>
+            </div>
+            <p>Instead of "we're slow", we ask: What specifically is taking time? Is it planning, coding, testing, or deployment?</p>
+          </div>
+
+          <!-- Step 2: Analyze -->
+          <div 
+            class="example-card"
+            :class="{ 
+              'card-center': activeExampleStep === 2,
+              'card-left': activeExampleStep > 2,
+              'card-right': activeExampleStep < 2
+            }"
+            v-show="activeExampleStep >= 1 && activeExampleStep <= 3"
+          >
+            <div class="example-card-header">
+              <span class="example-badge">2</span>
+              <h4>Analyze</h4>
+            </div>
+            <p>Discovered: Most time is spent in back-and-forth clarifications during development. Acceptance criteria are often unclear.</p>
+          </div>
+
+          <!-- Step 3: Generate -->
+          <div 
+            class="example-card"
+            :class="{ 
+              'card-center': activeExampleStep === 3,
+              'card-left': activeExampleStep > 3,
+              'card-right': activeExampleStep < 3
+            }"
+            v-show="activeExampleStep >= 2 && activeExampleStep <= 4"
+          >
+            <div class="example-card-header">
+              <span class="example-badge">3</span>
+              <h4>Generate</h4>
+            </div>
+            <ul class="example-list">
+              <li>Template for clearer user stories</li>
+              <li>Pre-kickoff meeting for Q&A</li>
+              <li>Definition of "ready" checklist</li>
+              <li>Pair PM with developer</li>
+            </ul>
+          </div>
+
+          <!-- Step 4: Prototype -->
+          <div 
+            class="example-card"
+            :class="{ 
+              'card-center': activeExampleStep === 4,
+              'card-left': activeExampleStep > 4,
+              'card-right': activeExampleStep < 4
+            }"
+            v-show="activeExampleStep >= 3 && activeExampleStep <= 5"
+          >
+            <div class="example-card-header">
+              <span class="example-badge">4</span>
+              <h4>Prototype</h4>
+            </div>
+            <p>Test the "definition of ready" checklist with one team for two weeks.</p>
+          </div>
+
+          <!-- Step 5: Evaluate -->
+          <div 
+            class="example-card"
+            :class="{ 
+              'card-center': activeExampleStep === 5,
+              'card-left': activeExampleStep > 5,
+              'card-right': activeExampleStep < 5
+            }"
+            v-show="activeExampleStep >= 4 && activeExampleStep <= 6"
+          >
+            <div class="example-card-header">
+              <span class="example-badge">5</span>
+              <h4>Evaluate</h4>
+            </div>
+            <p>Measure: clarification time reduced by 60%, team reports clearer understanding before starting work.</p>
+          </div>
+
+          <!-- Step 6: Implement -->
+          <div 
+            class="example-card"
+            :class="{ 
+              'card-center': activeExampleStep === 6,
+              'card-left': activeExampleStep > 6,
+              'card-right': activeExampleStep < 6
+            }"
+            v-show="activeExampleStep >= 5"
+          >
+            <div class="example-card-header">
+              <span class="example-badge">6</span>
+              <h4>Implement</h4>
+            </div>
+            <p>Roll out the checklist to all teams. Simple, clear, measurable improvement.</p>
+          </div>
+        </div>
+
+        <div class="example-controls">
+          <button 
+            class="example-btn example-btn-prev" 
+            @click="prevStep"
+            :disabled="activeExampleStep <= 0"
+          >
+            ← Previous
+          </button>
+          
+          <div class="example-indicator">
+            <span v-if="activeExampleStep === 0">Scenario</span>
+            <span v-else>Step {{ activeExampleStep }} of 6</span>
+          </div>
+          
+          <button 
+            class="example-btn example-btn-next" 
+            @click="nextStep"
+            :disabled="activeExampleStep >= 6"
+          >
+            Next →
+          </button>
+        </div>
+
+        <div class="example-footer">
+          <p>From "we're slow" to a clear, tested process improvement.</p>
+          <p class="example-tagline">Method over drama.</p>
         </div>
       </div>
     </section>
@@ -576,7 +795,7 @@ const scrollToNextSection = (currentSection) => {
 /* Introduction Section */
 .problem-flow {
   display: flex;
-  gap: 1.5rem;
+  gap: 5.5rem;
   margin-bottom: 3rem;
   max-width: 900px;
   margin-left: auto;
@@ -925,35 +1144,115 @@ const scrollToNextSection = (currentSection) => {
 }
 
 /* Problem to Method Section */
-.method-flow {
+.method-viewport {
+  position: relative;
+  max-width: 1200px;
+  min-height: 450px;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 900px;
-  margin: 0 auto 4rem;
   align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
 }
 
 .method-step {
   background: var(--color-background-alt);
-  padding: 2.5rem;
+  padding: 3rem 4rem;
   border-radius: 12px;
   border: 2px solid var(--color-border);
   width: 100%;
-  max-width: 800px;
+  max-width: 1000px;
   text-align: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -45%) scale(0.98);
+  opacity: 0;
+  transition: 
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.5s ease,
+    box-shadow 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* Card in center - active */
+.method-step.method-card-center {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  border-color: var(--color-text);
+  z-index: 2;
+  pointer-events: auto;
+  box-shadow: 0 12px 48px rgba(194, 122, 159, 0.2);
+}
+
+/* Card above - previous step */
+.method-step.method-card-above {
+  transform: translate(-50%, calc(-50% - 320px)) scale(0.92);
+  opacity: 0.35;
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+/* Card below - next step */
+.method-step.method-card-below {
+  transform: translate(-50%, calc(-50% + 320px)) scale(0.92);
+  opacity: 0.35;
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+.method-navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0 3rem;
+}
+
+.method-nav-btn {
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  padding: 0.8rem 2rem;
+  font-size: 0.95rem;
+  font-weight: 400;
+  border-radius: 8px;
+  cursor: pointer;
   transition: all 0.3s ease;
-  position: relative;
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.05em;
+  min-width: 140px;
 }
 
-.method-step:hover {
-  border-color: var(--color-text);
-  transform: translateY(-5px);
+.method-nav-btn:hover:not(:disabled) {
+  background: var(--color-text);
+  color: var(--color-background);
+  transform: translateY(-2px);
 }
 
-.method-step.highlighted {
-  border-color: var(--color-text);
-  background: var(--color-background-alt);
+.method-nav-btn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  border-color: var(--color-border);
+}
+
+.method-progress {
+  color: var(--color-text-primary);
+  font-size: 1rem;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  min-width: 130px;
+  text-align: center;
 }
 
 .step-number {
@@ -989,7 +1288,7 @@ const scrollToNextSection = (currentSection) => {
   list-style: none;
   padding-left: 0;
   text-align: left;
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -1105,6 +1404,237 @@ const scrollToNextSection = (currentSection) => {
   line-height: 1.6;
   font-weight: 400;
   color: var(--color-text);
+}
+
+/* Practical Example Section */
+.example-section {
+  background: var(--color-background);
+  padding: 5rem 0;
+}
+
+.example-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+}
+
+.example-section .section-title {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Cards container - shows current and next card */
+.example-cards-container {
+  width: 100%;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: visible;
+}
+
+/* Individual cards */
+.example-card {
+  max-width: 600px;
+  width: 600px;
+  background: var(--color-background-alt);
+  padding: 3rem;
+  border-radius: 12px;
+  border: 2px solid var(--color-border);
+  position: absolute;
+  left: 50%;
+  transition: 
+    transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.4s ease,
+    filter 0.7s ease;
+  will-change: transform, opacity;
+}
+
+/* Card in center - active */
+.example-card.card-center {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+  border-color: var(--color-text);
+  z-index: 2;
+  filter: blur(0px);
+}
+
+/* Card on the right - next step */
+.example-card.card-right {
+  transform: translateX(calc(-50% + 670px)) scale(0.95);
+  opacity: 0.35;
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+/* Card on the left - previous step */
+.example-card.card-left {
+  transform: translateX(calc(-50% - 670px)) scale(0.95);
+  opacity: 0.35;
+  z-index: 1;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+.example-card-title {
+  font-family: 'Oswald', sans-serif;
+  color: var(--color-text);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.example-card-text {
+  font-size: 1.4rem;
+  font-style: italic;
+  color: var(--color-text-primary);
+  line-height: 1.7;
+  text-align: center;
+}
+
+.example-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.example-badge {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: var(--color-text);
+  color: var(--color-background);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: 'Oswald', sans-serif;
+  flex-shrink: 0;
+}
+
+.example-card h4 {
+  font-family: 'Oswald', sans-serif;
+  color: var(--color-text);
+  font-size: 1.8rem;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.example-card p {
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+  font-weight: 300;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.example-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.example-list li {
+  padding: 0.7rem 0 0.7rem 2rem;
+  position: relative;
+  color: var(--color-text-secondary);
+  font-weight: 300;
+  line-height: 1.7;
+  font-size: 1.05rem;
+}
+
+.example-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+/* Navigation controls */
+.example-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.example-btn {
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  padding: 0.9rem 2rem;
+  font-size: 1rem;
+  font-weight: 400;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.05em;
+  min-width: 150px;
+}
+
+.example-btn:hover:not(:disabled) {
+  background: var(--color-text);
+  color: var(--color-background);
+}
+
+.example-btn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  border-color: var(--color-border);
+}
+
+.example-indicator {
+  color: var(--color-text-primary);
+  font-size: 1.1rem;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  min-width: 180px;
+  text-align: center;
+}
+
+/* Footer section */
+.example-footer {
+  background: var(--color-background-alt);
+  padding: 2.5rem;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 700px;
+}
+
+.example-footer p {
+  color: var(--color-text-primary);
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin: 0.5rem 0;
+  font-weight: 300;
+}
+
+.example-tagline {
+  color: var(--color-text);
+  font-size: 1.6rem;
+  font-weight: 400;
+  margin-top: 1rem;
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 /* Footer */
@@ -1291,8 +1821,43 @@ const scrollToNextSection = (currentSection) => {
     padding: 1.5rem;
   }
 
+  .method-viewport {
+    min-height: 450px;
+    padding: 0 1rem;
+  }
+
   .method-step {
     padding: 2rem 1.5rem;
+    max-width: 95%;
+    min-height: 280px;
+  }
+
+  .method-step.method-card-above {
+    transform: translate(-50%, calc(-50% - 250px)) scale(0.92);
+  }
+
+  .method-step.method-card-below {
+    transform: translate(-50%, calc(-50% + 250px)) scale(0.92);
+  }
+
+  .method-step.method-card-center {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  .method-navigation {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .method-nav-btn {
+    font-size: 0.9rem;
+    padding: 0.7rem 1.5rem;
+    min-width: 200px;
+  }
+
+  .method-progress {
+    order: -1;
+    width: 100%;
   }
 
   .step-list {
@@ -1301,6 +1866,60 @@ const scrollToNextSection = (currentSection) => {
 
   .step-title {
     font-size: 1.3rem;
+  }
+
+  .example-card {
+    width: 90%;
+    max-width: 90%;
+    padding: 2rem 1.5rem;
+  }
+
+  .example-card.card-center {
+    transform: translateX(-50%) scale(1);
+  }
+
+  .example-card.card-right {
+    transform: translateX(calc(-50% + 350px)) scale(0.95);
+  }
+
+  .example-card.card-left {
+    transform: translateX(calc(-50% - 350px)) scale(0.95);
+  }
+
+  .example-card-title {
+    font-size: 1.5rem;
+  }
+
+  .example-card-text {
+    font-size: 1.1rem;
+  }
+
+  .example-badge {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.2rem;
+  }
+
+  .example-card h4 {
+    font-size: 1.3rem;
+  }
+
+  .example-controls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .example-btn {
+    min-width: 200px;
+  }
+
+  .example-indicator {
+    order: -1;
+  }
+
+  .example-footer {
+    padding: 2rem 1.5rem;
+    margin: 0 1rem;
   }
 
   .back-to-top {
