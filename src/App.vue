@@ -666,6 +666,7 @@ const prevMethodStep = () => {
             See more in my PRO plan 'Surviving Resizes' →
           </a>
         </p>
+        <p class="copyright">© {{ new Date().getFullYear() }} Resizes. All rights reserved.</p>
       </div>
     </footer>
 
@@ -2129,6 +2130,13 @@ const prevMethodStep = () => {
   text-decoration: none;
   font-weight: 400;
   transition: color 0.3s ease;
+}
+
+.copyright {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+  margin-top: 1.5rem;
+  opacity: 0.8;
 }
 
 .instagram-link a:hover {
