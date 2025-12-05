@@ -705,6 +705,7 @@ const prevMethodStep = () => {
 .app {
   width: 100%;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Hero Section */
@@ -804,6 +805,8 @@ const prevMethodStep = () => {
   letter-spacing: 0.05em;
   align-self: center;
   width: auto;
+  min-height: 44px; /* Touch target size */
+  touch-action: manipulation;
 }
 
 .cta-button:hover {
@@ -1399,6 +1402,8 @@ const prevMethodStep = () => {
   font-family: 'Oswald', sans-serif;
   letter-spacing: 0.05em;
   min-width: 140px;
+  min-height: 44px; /* Touch target size */
+  touch-action: manipulation;
 }
 
 .method-nav-btn:hover:not(:disabled) {
@@ -1895,6 +1900,8 @@ const prevMethodStep = () => {
   font-family: 'Oswald', sans-serif;
   letter-spacing: 0.05em;
   min-width: 150px;
+  min-height: 44px; /* Touch target size */
+  touch-action: manipulation;
 }
 
 .example-btn:hover:not(:disabled) {
@@ -2103,6 +2110,8 @@ const prevMethodStep = () => {
   letter-spacing: 0.05em;
   display: block;
   margin: 0 auto;
+  min-height: 44px; /* Touch target size */
+  touch-action: manipulation;
 }
 
 .back-to-top-alt:hover {
@@ -2163,7 +2172,10 @@ const prevMethodStep = () => {
   justify-content: center;
   width: 3.5rem;
   height: 3.5rem;
+  min-width: 44px; /* Touch target size */
+  min-height: 44px;
   z-index: 10;
+  touch-action: manipulation;
 }
 
 .next-section-btn:hover {
@@ -2225,6 +2237,8 @@ const prevMethodStep = () => {
   right: 2rem;
   width: 3rem;
   height: 3rem;
+  min-width: 44px; /* Touch target size */
+  min-height: 44px;
   background: var(--color-text);
   color: var(--color-background);
   border: none;
@@ -2237,6 +2251,7 @@ const prevMethodStep = () => {
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  touch-action: manipulation;
 }
 
 .back-to-top:hover {
@@ -2257,180 +2272,454 @@ const prevMethodStep = () => {
   opacity: 0;
 }
 
-/* Responsive */
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+  .container {
+    max-width: 100%;
+    padding: 0 2rem;
+  }
+
+  .section {
+    padding: 4rem 2rem;
+  }
+
+  .methodology-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .techniques-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .culture-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .creativity-section .container {
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .example-card {
+    width: 550px;
+    max-width: 90%;
+  }
+
+  .example-card.card-right {
+    transform: translateX(calc(-50% + 600px)) scale(0.95);
+  }
+
+  .example-card.card-left {
+    transform: translateX(calc(-50% - 600px)) scale(0.95);
+  }
+}
+
+/* Responsive - Mobile */
 @media (max-width: 768px) {
+  .hero {
+    min-height: 100vh;
+    padding: 2rem 1rem;
+  }
+
   .hero-title {
     font-size: 2.5rem;
     padding: 0 1rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
   }
 
   .hero-subtitle {
     font-size: 1.2rem;
     padding: 0 1rem;
+    margin-bottom: 2.5rem;
   }
 
-  .section-title {
-    font-size: 2rem;
-    padding: 0 0.5rem;
+  .cta-button {
+    padding: 0.9rem 2rem;
+    font-size: 0.95rem;
+    min-width: 200px;
+  }
+
+  .scroll-indicator {
+    bottom: 1.5rem;
+  }
+
+  .scroll-indicator span {
+    font-size: 1.5rem;
   }
 
   .section {
     padding: 3rem 1rem;
-    min-height: 100vh;
+    min-height: auto;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+    padding: 0 0.5rem;
+    margin-bottom: 2rem;
+    line-height: 1.3;
+  }
+
+  .section-title-small {
+    font-size: 1.5rem;
   }
 
   .container {
-    padding: 0 0.5rem;
+    padding: 0 1rem;
+    max-width: 100%;
   }
 
-
-  .methodology-grid,
-  .proactivity-content {
-    grid-template-columns: 1fr;
-  }
-
+  /* Introduction Section */
   .problem-flow {
     flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
   }
 
-  .method-box,
-  .principles,
-  .quote,
-  .problem-flow,
-  .highlight-box,
-  .final-message {
+  .flow-item {
+    min-height: auto;
+    padding: 1.5rem;
+    width: 100%;
+  }
+
+  .flow-item p {
+    font-size: 1rem;
+  }
+
+  .flow-emoji {
+    font-size: 1.8rem;
+  }
+
+  .flow-item small {
+    font-size: 0.85rem;
+    margin-top: 1rem;
+  }
+
+  .highlight-box {
+    padding: 2rem 1.5rem;
+    margin: 2rem auto;
+    font-size: 1rem;
+  }
+
+  .highlight-box strong {
+    display: block;
+    margin-top: 0.5rem;
+  }
+
+  /* Methodology Section */
+  .methodology-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .methodology-card {
     padding: 1.5rem;
   }
 
-  .method-viewport {
-    min-height: 450px;
+  .methodology-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .methodology-card h4 {
+    font-size: 1.2rem;
+  }
+
+  .methodology-card p {
+    font-size: 0.95rem;
+  }
+
+  /* Section Images - Mobile */
+  .section-image-left,
+  .section-image-right {
+    position: relative;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: auto;
+    height: auto;
+    transform: none;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto 2rem;
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  /* Hide Bauhaus image on mobile */
+  .section-image-right-bottom {
+    display: none;
+  }
+
+  .section-image-right img {
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+  }
+
+  /* Creativity Section */
+  .creativity-section {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .creativity-section .container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
     padding: 0 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .creativity-section .section-title {
+    text-align: center;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .quote {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    max-width: 100%;
+    text-align: left;
+    border-right: none;
+    border-left: 3px solid var(--color-text);
+  }
+
+  .question-box {
+    max-width: 100%;
+    margin: 1.5rem auto 0;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  /* Munari Section */
+  .principles {
+    margin-bottom: 2rem;
+    padding: 0;
+  }
+
+  .principle-item {
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .method-box {
+    padding: 2rem 1.5rem;
+    margin: 0 auto;
+  }
+
+  .method-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .method-steps li {
+    font-size: 1rem;
+    padding-left: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .method-steps li::before {
+    width: 1.6rem;
+    height: 1.6rem;
+    font-size: 0.85rem;
+  }
+
+  .method-quote {
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  /* Problem to Method Section */
+  .method-viewport {
+    min-height: 400px;
+    padding: 0 1rem;
+    margin: 2rem 0;
   }
 
   .method-step {
     padding: 2rem 1.5rem;
-    max-width: 95%;
+    max-width: 100%;
     min-height: 280px;
+    border-radius: 10px;
   }
 
-  .method-step.method-card-above {
-    transform: translate(-50%, calc(-50% - 250px)) scale(0.92);
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
+    top: -15px;
   }
 
-  .method-step.method-card-below {
-    transform: translate(-50%, calc(-50% + 250px)) scale(0.92);
-  }
-
-  .method-step.method-card-center {
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  .method-navigation {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .method-nav-btn {
-    font-size: 0.9rem;
-    padding: 0.7rem 1.5rem;
-    min-width: 200px;
-  }
-
-  .method-progress {
-    order: -1;
-    width: 100%;
+  .step-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+    margin-top: 0.5rem;
   }
 
   .step-list {
     max-width: 100%;
   }
 
-  .step-title {
-    font-size: 1.3rem;
+  .step-list li {
+    font-size: 1rem;
+    padding: 0.7rem 0 0.7rem 1.8rem;
+    line-height: 1.5;
+  }
+
+  .step-list li::before {
+    font-size: 1.1rem;
+  }
+
+  .step-note {
+    font-size: 0.9rem;
+    margin-top: 1.2rem;
+    padding-top: 1.2rem;
+  }
+
+  .method-navigation {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .method-nav-btn {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+    min-width: 200px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .method-progress {
+    order: -1;
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  /* Proactivity Section */
+  .proactivity-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .proactivity-item {
+    padding: 1.5rem;
+  }
+
+  .proactivity-item p {
+    font-size: 1rem;
+  }
+
+  .icon {
+    font-size: 2.5rem;
+  }
+
+  .final-message {
+    padding: 2rem 1.5rem;
+    margin: 2rem auto;
+  }
+
+  .final-message h3 {
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+
+  /* Practical Techniques Section */
+  .techniques-section {
+    padding: 3rem 1rem;
+  }
+
+  .techniques-section .section-subtitle {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
   }
 
   .techniques-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
+    margin-bottom: 2rem;
   }
 
   .technique-card {
     padding: 2rem 1.5rem;
   }
 
+  .technique-icon {
+    font-size: 3rem;
+  }
+
   .technique-card h3 {
     font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .technique-description {
     font-size: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .technique-example {
     padding: 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  .technique-example strong {
+    font-size: 0.85rem;
+  }
+
+  .technique-example li {
+    font-size: 0.9rem;
+    padding: 0.3rem 0;
+  }
+
+  .technique-insight {
+    font-size: 0.95rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
   }
 
   .techniques-footer {
     padding: 1.5rem;
+    margin: 0 auto;
   }
 
   .techniques-footer p {
     font-size: 1rem;
+    line-height: 1.6;
   }
 
-  .culture-title {
-    font-size: 2rem;
-    padding: 0 1rem;
+  /* Practical Example Section */
+  .example-section {
+    padding: 3rem 0;
   }
 
-  .culture-text {
-    font-size: 1.1rem;
-  }
-
-  .culture-grid {
-    grid-template-columns: 1fr;
+  .example-container {
     gap: 2rem;
   }
 
-  .culture-card {
-    padding: 2rem 1.5rem;
-  }
-
-  .culture-card h3 {
-    font-size: 1.4rem;
-  }
-
-  .culture-quote {
-    padding: 2rem 1.5rem;
-    margin: 3rem 1rem;
-  }
-
-  .culture-quote-text {
-    font-size: 1.2rem;
-  }
-
-  .culture-cta {
-    padding: 2rem 1.5rem;
-    margin: 0 1rem 2rem;
-  }
-
-  .culture-cta p {
-    font-size: 1.1rem;
-  }
-
-  .culture-cta-emphasis {
-    font-size: 1.2rem;
-  }
-
-  .back-to-top-alt {
-    padding: 0.9rem 2rem;
-    font-size: 1rem;
+  .example-cards-container {
+    min-height: 400px;
+    width: 100%;
+    padding: 0 1rem;
   }
 
   .example-card {
-    width: 90%;
-    max-width: 90%;
+    width: 100%;
+    max-width: 100%;
     padding: 2rem 1.5rem;
+    left: 50%;
   }
 
   .example-card.card-center {
@@ -2438,19 +2727,23 @@ const prevMethodStep = () => {
   }
 
   .example-card.card-right {
-    transform: translateX(calc(-50% + 350px)) scale(0.95);
+    transform: translateX(calc(-50% + 100vw)) scale(0.95);
+    opacity: 0;
   }
 
   .example-card.card-left {
-    transform: translateX(calc(-50% - 350px)) scale(0.95);
+    transform: translateX(calc(-50% - 100vw)) scale(0.95);
+    opacity: 0;
   }
 
   .example-card-title {
     font-size: 1.5rem;
+    margin-bottom: 1.2rem;
   }
 
   .example-card-text {
     font-size: 1.1rem;
+    line-height: 1.6;
   }
 
   .example-badge {
@@ -2463,22 +2756,167 @@ const prevMethodStep = () => {
     font-size: 1.3rem;
   }
 
+  .example-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .example-list li {
+    font-size: 1rem;
+    padding: 0.6rem 0 0.6rem 1.8rem;
+  }
+
   .example-controls {
     flex-direction: column;
     gap: 1rem;
+    margin: 2rem 0;
+    padding: 0 1rem;
   }
 
   .example-btn {
     min-width: 200px;
+    width: 100%;
+    max-width: 300px;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.95rem;
   }
 
   .example-indicator {
     order: -1;
+    font-size: 1rem;
+    min-width: auto;
   }
 
   .example-footer {
     padding: 2rem 1.5rem;
     margin: 0 1rem;
+  }
+
+  .example-footer p {
+    font-size: 1.1rem;
+  }
+
+  .example-tagline {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+  }
+
+  /* Culture Section */
+  .culture-section {
+    padding: 4rem 1rem;
+  }
+
+  .culture-title {
+    font-size: 2rem;
+    padding: 0 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+
+  .culture-message {
+    margin-bottom: 3rem;
+  }
+
+  .culture-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    padding: 0 0.5rem;
+  }
+
+  .culture-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .culture-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .culture-icon {
+    font-size: 3rem;
+  }
+
+  .culture-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .culture-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .culture-quote {
+    padding: 2rem 1.5rem;
+    margin: 3rem 1rem;
+    border-left: 3px solid var(--color-text);
+  }
+
+  .culture-quote-text {
+    font-size: 1.2rem;
+    line-height: 1.7;
+  }
+
+  .culture-cta {
+    padding: 2rem 1.5rem;
+    margin: 0 1rem 2rem;
+  }
+
+  .culture-cta p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  .culture-cta-emphasis {
+    font-size: 1.2rem;
+    margin-top: 1.2rem;
+  }
+
+  .back-to-top-alt {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    width: calc(100% - 2rem);
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 2.5rem 1rem;
+  }
+
+  .footer p {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .instagram-link a {
+    font-size: 0.95rem;
+    word-break: break-word;
+  }
+
+  .copyright {
+    font-size: 0.85rem;
+    margin-top: 1.5rem;
+  }
+
+  /* Navigation */
+  .nav-index {
+    right: 0.5rem;
+    transform: translateY(-50%) scale(0.85);
+    max-width: 120px;
+  }
+
+  .nav-index a {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.5rem;
+    line-height: 1.4;
+  }
+
+  /* Hide next section buttons on mobile - users scroll with finger */
+  .next-section-btn {
+    display: none;
   }
 
   .back-to-top {
@@ -2488,83 +2926,172 @@ const prevMethodStep = () => {
     height: 2.5rem;
     font-size: 1.2rem;
   }
+}
 
-  .nav-index {
-    right: 0.5rem;
-    transform: translateY(-50%) scale(0.85);
+/* Responsive - Small Mobile */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2rem;
+    line-height: 1.1;
   }
 
-  .nav-index a {
-    font-size: 0.7rem;
-    padding: 0.3rem 0.5rem;
+  .hero-subtitle {
+    font-size: 1.1rem;
   }
 
-  .next-section-btn {
-    width: 3rem;
-    height: 3rem;
-    font-size: 1.5rem;
+  .section {
+    padding: 2.5rem 0.75rem;
   }
 
-  .hero-image {
-    max-width: 300px;
+  .section-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
   }
 
-  .section-image {
-    max-width: 100%;
-    padding: 1rem;
+  .container {
+    padding: 0 0.75rem;
   }
 
-  .section-image-left,
-  .section-image-right,
-  .section-image-right-bottom {
-    position: relative;
-    left: 0;
-    right: 0;
-    top: auto;
-    bottom: auto;
-    height: auto;
-    transform: none;
-    max-width: 100%;
-    width: 100%;
-    margin: 0 0 2rem 0;
-    opacity: 0.5;
+  .problem-flow {
+    gap: 1.2rem;
   }
 
-  .section-image-right img {
-    height: auto;
-    width: 100%;
+  .flow-item {
+    padding: 1.2rem;
   }
 
-  .creativity-section {
-    display: flex;
-    flex-direction: column;
+  .flow-item p {
+    font-size: 0.95rem;
   }
 
-  .creativity-section .container {
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 100%;
-    padding: 0 1rem;
+  .highlight-box {
+    padding: 1.5rem 1rem;
+    font-size: 0.95rem;
   }
 
-  .creativity-section .section-title {
-    text-align: center;
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+  .methodology-card,
+  .proactivity-item,
+  .culture-card,
+  .technique-card {
+    padding: 1.5rem 1.2rem;
   }
 
-  .quote,
-  .question-box {
-    max-width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+  .method-box {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .method-steps li {
+    font-size: 0.95rem;
+    padding-left: 2.2rem;
+  }
+
+  .method-viewport {
+    min-height: 350px;
+    padding: 0 0.75rem;
+  }
+
+  .method-step {
+    padding: 1.5rem 1.2rem;
+    min-height: 250px;
+  }
+
+  .step-title {
+    font-size: 1.2rem;
+  }
+
+  .step-list li {
+    font-size: 0.95rem;
+    padding-left: 1.5rem;
+  }
+
+  .method-nav-btn,
+  .example-btn {
+    min-width: 180px;
+    padding: 0.8rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .technique-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .technique-description {
+    font-size: 0.95rem;
+  }
+
+  .example-card {
+    padding: 1.5rem 1.2rem;
+  }
+
+  .example-card-title {
+    font-size: 1.3rem;
+  }
+
+  .example-card-text {
+    font-size: 1rem;
+  }
+
+  .example-badge {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 1.1rem;
+  }
+
+  .example-card h4 {
+    font-size: 1.2rem;
+  }
+
+  .culture-title {
+    font-size: 1.8rem;
+  }
+
+  .culture-text {
+    font-size: 1rem;
+  }
+
+  .culture-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .culture-quote-text {
+    font-size: 1.1rem;
+  }
+
+  .culture-cta p {
+    font-size: 1rem;
+  }
+
+  .culture-cta-emphasis {
+    font-size: 1.1rem;
   }
 
   .quote {
-    border-right: none;
-    border-left: 3px solid var(--color-text);
+    font-size: 1rem;
+    padding: 1.2rem;
+  }
+
+  .question-box {
+    font-size: 1rem;
+    padding: 1.2rem;
+  }
+
+  .final-message h3 {
+    font-size: 1.2rem;
+  }
+
+  .nav-index {
+    display: none; /* Hide on very small screens */
+  }
+
+  /* Hide next section buttons on small mobile - users scroll with finger */
+  .next-section-btn {
+    display: none;
+  }
+
+  .back-to-top {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1rem;
   }
 }
 </style>
